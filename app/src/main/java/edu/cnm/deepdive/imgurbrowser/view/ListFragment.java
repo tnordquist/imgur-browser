@@ -33,7 +33,7 @@ public class ListFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     listFab.setOnClickListener(view1 -> {
-      NavDirections action = ListFragmentDirections.actionListFragmentToDetailFragment();
+      NavDirections action = ListFragmentDirections.actionGoToDetail();
       Navigation.findNavController(view1).navigate(action);
     });
   }
