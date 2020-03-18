@@ -1,0 +1,7 @@
+GET: https://api.imgur.com/3/account/{username}/image/{id}
+GET: https://i.imgur.com/{link}
+GET: https://api.imgur.com/3/gallery/search/?q={text}
+GET: https://api.imgur.com/3/account/{username}/images/{page}
+
+GET: https://api.imgur.com/3/gallery/r/shreddit
+GET: https://api.imgur.com/3/image/{id}  // gets information about an image by id
