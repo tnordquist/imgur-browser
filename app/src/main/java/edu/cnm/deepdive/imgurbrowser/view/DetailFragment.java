@@ -1,6 +1,5 @@
 package edu.cnm.deepdive.imgurbrowser.view;
 
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,12 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import androidx.fragment.app.Fragment;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import edu.cnm.deepdive.imgurbrowser.BuildConfig;
 import edu.cnm.deepdive.imgurbrowser.R;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DetailFragment extends Fragment {
 
@@ -46,9 +50,24 @@ public class DetailFragment extends Fragment {
     settings.setSupportZoom(true);
     settings.setBuiltInZoomControls(true);
     settings.setDisplayZoomControls(false);
+    settings.setUseWideViewPort(true);
+    settings.setLoadWithOverviewMode(true);
+    new Retriever().start();
   }
 
 
+  private class Retriever extends Thread {
 
+    @Override
+    public void run() {
+      Gson gson = new GsonBuilder()
+          .excludeFieldsWithoutExposeAnnotation()
+          .create();
+      Retrofit retrofit = new Retrofit.Builder()
+          .baseUrl(IMAGE_URL)
+          .addConverterFactory(GsonConverterFactory.create(gson))
+          .build();
 
+    }
+  }
 }

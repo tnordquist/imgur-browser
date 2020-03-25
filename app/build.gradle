@@ -12,6 +12,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "IMAGE_BASE_URL",
+                getProperty("../../services/imgur.properties", "image_base_url")
     }
     buildTypes {
         release {
