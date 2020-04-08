@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.imgurbrowser.view;
 
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.JsonReader;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,8 +26,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DetailFragment extends Fragment {
 
-  private static final String IMAGE_URL =
-      "https://i.imgur.com/2dbvcdq.png/";
+  private static final String BASE_URL =
+      "https://api.imgur.com/3/";
+
+  String userName = "tnordquist";
+  String password = "U%l0eJ7@";
+  String base = userName + ":" + password;
+  private static final String BASE_URL = "https://api.imgur.com/3/";
+  private static final String CLIENT_ID = "YourImgurClientId";
 
   private WebView contentView;
 
@@ -71,15 +78,16 @@ public class DetailFragment extends Fragment {
           .excludeFieldsWithoutExposeAnnotation()
           .create();
       Retrofit retrofit = new Retrofit.Builder()
-          .baseUrl(IMAGE_URL)
+          .baseUrl("/https://i.imgur.com/hXAdexf.jpg")
           .addConverterFactory(GsonConverterFactory.create(gson))
           .build();
       ImgurService service = retrofit.create(ImgurService.class);
       try {
-        Response<Image> response = service.get().execute();
+        Response<Image> response = service
+            .get("Basic" + Base64.encodeToString(base.getBytes(), Base64.NO_WRAP)).execute();
         if (response.isSuccessful()) {
           Image image = response.body();
-          String url = image.getMediaLink();
+          String url = "https://i.imgur.com/hXAdexf.jpg";
           getActivity().runOnUiThread(() -> contentView.loadUrl(url));
         } else {
           Log.e("ImgurService", response.message());

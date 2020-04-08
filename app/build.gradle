@@ -11,7 +11,6 @@ def getProperty(String propertyFile, String propertyName) {
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "edu.cnm.deepdive.imgurbrowser"
         minSdkVersion 21
@@ -19,8 +18,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-//        buildConfigField "String", "IMAGE_BASE_URL",
-//                getProperty("../../services/imgur.properties", "image_base_url")
+        buildConfigField "String", "BASE_URL",
+                getProperty("../../services/imgur.properties", "base_url")
+        buildConfigField "String", "CLIENT_ID",
+                getProperty("../../services/imgur.properties", "client_id")
     }
     buildTypes {
         release {
