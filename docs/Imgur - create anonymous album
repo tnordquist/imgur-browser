@@ -1,0 +1,38 @@
+Last login: Fri May 15 07:41:56 on console
+/Users/toddnordquist/.bash_profile:export:26: not valid in this context: :
+/Users/toddnordquist/.zshrc:2: permission denied: /Users/toddnordquist/.bash_profile
+/Users/toddnordquist/.zshrc:3: is a directory: /
+toddnordquist@Todds-MacBook-Pro ~ % curl --request POST \
+  --url https://api.imgur.com/3/album \
+  --header 'Authorization: Client-ID 90ef1830bd083ba' \
+  --header 'Content-Type: multipart/form-data' \
+  --form 'title=Album upload demo' \
+  --form 'description=Demo of album uploading via API'
+{"data":{"id":"aRxK2Ib","deletehash":"6OqfH6aSpltMEb1"},"success":true,"status":200}%                                                                           toddnordquist@Todds-MacBook-Pro ~ % curl --request POST \
+  --url https://api.imgur.com/3/album \
+  --header 'Authorization: Client-ID 546c25a59c58ad7' \
+  --header 'Content-Type: multipart/form-data' \
+  --form 'title=Album upload demo' \
+  --form 'description=Demo of album uploading via API'               
+{"data":{"id":"VRErcgB","deletehash":"tLhXm4qgT0CqGXu"},"success":true,"status":200}%                                                                           toddnordquist@Todds-MacBook-Pro ~ % 
+
+
+Anonymous Album created in Postman:
+{
+    "data": {
+        "id": "STtewlM",
+        "deletehash": "rvl7S5wDfTUospr"
+    },
+    "success": true,
+    "status": 200
+}
+
+{
+    "data": {
+        "id": "zVKGnZu",
+        "deletehash": "MKxnWvRakUrXjWn"
+    },
+    "success": true,
+    "status": 200
+}
+

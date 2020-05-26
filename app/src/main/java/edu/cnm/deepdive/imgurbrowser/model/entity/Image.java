@@ -2,6 +2,8 @@ package edu.cnm.deepdive.imgurbrowser.model.entity;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Date;
 import java.util.UUID;
 
 public class Image {
@@ -18,11 +20,29 @@ public class Image {
 
   @Expose
   @SerializedName("datetime")
-  private long imageDateTime;
+  private Date imageDateTime;
 
   @Expose
   @SerializedName("link")
   private String mediaLink;
+
+  @Expose
+  private boolean animated;
+
+  @Expose
+  private int width;
+
+  @Expose
+  private int height;
+
+  @Expose
+  private int size;
+
+  @Expose
+  private int views;
+
+  @Expose
+  private long bandwidth;
 
   public String getImageId() {
     return imageId;
@@ -48,11 +68,11 @@ public class Image {
     this.description = description;
   }
 
-  public long getImageDateTime() {
+  public Date getImageDateTime() {
     return imageDateTime;
   }
 
-  public void setImageDateTime(long imageDateTime) {
+  public void setImageDateTime(Date imageDateTime) {
     this.imageDateTime = imageDateTime;
   }
 
@@ -64,4 +84,51 @@ public class Image {
     this.mediaLink = mediaLink;
   }
 
+  public boolean isAnimated() {
+    return animated;
+  }
+
+  public void setAnimated(boolean animated) {
+    this.animated = animated;
+  }
+
+  public int getWidth() {
+    return width;
+  }
+
+  public void setWidth(int width) {
+    this.width = width;
+  }
+
+  public int getHeight() {
+    return height;
+  }
+
+  public void setHeight(int height) {
+    this.height = height;
+  }
+
+  public int getSize() {
+    return size;
+  }
+
+  public void setSize(int size) {
+    this.size = size;
+  }
+
+  public int getViews() {
+    return views;
+  }
+
+  public void setViews(int views) {
+    this.views = views;
+  }
+
+  public long getBandwidth() {
+    return bandwidth;
+  }
+
+  public void setBandwidth(long bandwidth) {
+    this.bandwidth = bandwidth;
+  }
 }
