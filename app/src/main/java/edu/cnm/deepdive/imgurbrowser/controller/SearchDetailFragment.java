@@ -22,7 +22,7 @@ import edu.cnm.deepdive.imgurbrowser.viewmodel.MainViewModel;
 import java.util.List;
 import java.util.Objects;
 
-public class DetailFragment extends Fragment {
+public class SearchDetailFragment extends Fragment {
 
   private WebView contentView;
   private MainViewModel viewModel;

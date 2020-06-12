@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
-import java.util.UUID;
 
 public class Image {
 
@@ -24,7 +23,7 @@ public class Image {
 
   @Expose
   @SerializedName("link")
-  private String mediaLink;
+  private String url;
 
   @Expose
   private boolean animated;
@@ -76,12 +75,12 @@ public class Image {
     this.imageDateTime = imageDateTime;
   }
 
-  public String getMediaLink() {
-    return mediaLink;
+  public String getUrl() {
+    return url;
   }
 
-  public void setMediaLink(String mediaLink) {
-    this.mediaLink = mediaLink;
+  public void setUrl(String url) {
+    this.url = url;
   }
 
   public boolean isAnimated() {

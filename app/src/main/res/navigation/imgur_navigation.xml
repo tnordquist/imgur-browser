@@ -7,9 +7,9 @@
 
   <fragment
     android:id="@+id/listFragment"
-    android:name="edu.cnm.deepdive.imgurbrowser.controller.ListFragment"
+    android:name="edu.cnm.deepdive.imgurbrowser.controller.GallerySearchFragment"
     android:label="fragment_list"
-    tools:layout="@layout/fragment_list">
+    tools:layout="@layout/gallery_list">
     <action
       android:id="@+id/action_go_to_detail"
       app:destination="@id/detailFragment"
@@ -18,7 +18,7 @@
   </fragment>
   <fragment
     android:id="@+id/detailFragment"
-    android:name="edu.cnm.deepdive.imgurbrowser.controller.DetailFragment"
+    android:name="edu.cnm.deepdive.imgurbrowser.controller.SearchDetailFragment"
     android:label="fragment_detail"
     tools:layout="@layout/fragment_detail">
     <action

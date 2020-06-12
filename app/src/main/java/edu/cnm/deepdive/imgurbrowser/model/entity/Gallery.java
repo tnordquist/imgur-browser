@@ -22,11 +22,6 @@ public class Gallery {
 
     @Expose
     private Image[] images;
-    
-
-  /*
-  Single<Gallery.SearchResult> {}
-   */
 
     public String getId() {
         return id;
@@ -92,8 +87,7 @@ public class Gallery {
         @Override
         public String toString() {
             return "SearchResult{" +
-                "data=" + Arrays.toString(data) +
-                '}';
+                "data=" + Arrays.toString(getData());
         }
     }
 

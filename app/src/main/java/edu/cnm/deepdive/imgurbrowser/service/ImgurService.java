@@ -4,22 +4,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.cnm.deepdive.imgurbrowser.BuildConfig;
 import edu.cnm.deepdive.imgurbrowser.model.entity.Gallery;
-import edu.cnm.deepdive.imgurbrowser.model.entity.Gallery.SearchResult;
-import edu.cnm.deepdive.imgurbrowser.model.entity.Image;
 import io.reactivex.Single;
-import java.util.List;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
-import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ImgurService {

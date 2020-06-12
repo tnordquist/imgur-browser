@@ -5,7 +5,6 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.room.Query;
 import edu.cnm.deepdive.imgurbrowser.BuildConfig;
 import edu.cnm.deepdive.imgurbrowser.model.entity.Gallery;
 import edu.cnm.deepdive.imgurbrowser.service.ImgurService;
@@ -13,16 +12,17 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainViewModel extends AndroidViewModel {
 
-
   private MutableLiveData<Gallery.SearchResult> searchResult;
+  private MutableLiveData<Boolean> loadError = new MutableLiveData<Boolean>();
+  private MutableLiveData<Boolean> loading = new MutableLiveData<Boolean>();
   private MutableLiveData<Throwable> throwable;
   ImgurService imgurService;
 
   public MainViewModel(@NonNull Application application) {
     super(application);
     imgurService = ImgurService.getInstance();
-    searchResult = new MutableLiveData<>();
-    throwable = new MutableLiveData<>();
+    searchResult = new MutableLiveData<Gallery.SearchResult>();
+    throwable = new MutableLiveData<Throwable>();
     loadData();
   }
 

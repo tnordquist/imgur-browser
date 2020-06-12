@@ -19,9 +19,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BASE_URL",
-                getProperty("../../services/imgur.properties", "base_url")
+                getProperty("$projectDir/../../../services/imgur.properties", "base_url")
         buildConfigField "String", "CLIENT_ID",
-                getProperty("../../services/imgur.properties", "client_id")
+                getProperty("$projectDir/../../../services/imgur.properties", "client_id")
     }
     buildTypes {
         release {
@@ -58,6 +58,12 @@ dependencies {
     // ReactiveX dependencies
     implementation 'io.reactivex.rxjava2:rxjava:2.2.17'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    // recyclerview dependencies
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc01"
+
 
     // Room and SQLite dependencies
     def room_version = "2.2.5"
