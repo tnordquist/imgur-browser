@@ -7,40 +7,29 @@ import java.util.Date;
 
 public class Image {
 
-  @Expose
   @SerializedName("id")
   private String imageId;
 
-  @Expose
   private String title;
 
-  @Expose
   private String description;
 
-  @Expose
   @SerializedName("datetime")
   private Date imageDateTime;
 
-  @Expose
   @SerializedName("link")
   private String url;
 
-  @Expose
   private boolean animated;
 
-  @Expose
   private int width;
 
-  @Expose
   private int height;
 
-  @Expose
   private int size;
 
-  @Expose
   private int views;
 
-  @Expose
   private long bandwidth;
 
   public String getImageId() {

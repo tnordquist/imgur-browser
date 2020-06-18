@@ -4,30 +4,44 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import edu.cnm.deepdive.imgurbrowser.BuildConfig;
 import edu.cnm.deepdive.imgurbrowser.model.entity.Gallery;
+import edu.cnm.deepdive.imgurbrowser.model.entity.Gallery.SearchResult;
 import edu.cnm.deepdive.imgurbrowser.service.ImgurService;
 import io.reactivex.schedulers.Schedulers;
+import java.util.List;
+import java.util.Objects;
 
-public class MainViewModel extends AndroidViewModel {
+public class ListViewModel extends AndroidViewModel {
 
   private MutableLiveData<Gallery.SearchResult> searchResult;
+  private MutableLiveData<List<Gallery>> galleries;
   private MutableLiveData<Boolean> loadError = new MutableLiveData<Boolean>();
   private MutableLiveData<Boolean> loading = new MutableLiveData<Boolean>();
   private MutableLiveData<Throwable> throwable;
   ImgurService imgurService;
 
-  public MainViewModel(@NonNull Application application) {
+  public ListViewModel(@NonNull Application application) {
     super(application);
     imgurService = ImgurService.getInstance();
     searchResult = new MutableLiveData<Gallery.SearchResult>();
+    galleries = new MutableLiveData<List<Gallery>>();
     throwable = new MutableLiveData<Throwable>();
     loadData();
   }
 
-  public MutableLiveData<Gallery.SearchResult> getSearchResult() {
+  public LiveData<SearchResult> getSearchResult() {
     return searchResult;
+  }
+
+  public LiveData<Boolean> getLoading() {
+    return loading;
+  }
+
+  public LiveData<Boolean> getError() {
+    return loadError;
   }
 
   public MutableLiveData<Throwable> getThrowable() {
@@ -40,9 +54,9 @@ public class MainViewModel extends AndroidViewModel {
         "cute")
         .subscribeOn(Schedulers.io())
         .subscribe(
-            (searchResult1 -> this.searchResult.postValue(searchResult1)),
-            throwable1 -> {
-              this.throwable.postValue(throwable1.getCause());
+            (searchResult -> this.searchResult.postValue(searchResult)),
+            throwable -> {
+              this.throwable.postValue(throwable.getCause());
             }
         );
   }

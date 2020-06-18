@@ -1,23 +1,22 @@
 package edu.cnm.deepdive.imgurbrowser.model.entity;
 
+import androidx.annotation.NonNull;
 import com.google.gson.annotations.Expose;
 import java.util.Arrays;
 
 public class Gallery {
 
-    @Expose
     private String id;
 
-    @Expose
     private String title;
 
     @Expose
+    private String description;
+
     private long datetime;
 
-    @Expose
     private String link;
 
-    @Expose
     private Tag[] tags;
 
     @Expose
@@ -37,6 +36,14 @@ public class Gallery {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getDatetime() {
@@ -91,4 +98,9 @@ public class Gallery {
         }
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return String.valueOf(getImages());
+    }
 }
