@@ -78,6 +78,11 @@ public class Gallery {
         this.images = images;
     }
 
+    @Override
+    public String toString() {
+        return title  + description +  Arrays.toString(images);
+    }
+
     public static class SearchResult {
 
         @Expose
@@ -98,9 +103,5 @@ public class Gallery {
         }
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return String.valueOf(getImages());
-    }
+
 }

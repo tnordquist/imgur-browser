@@ -25,22 +25,17 @@ import java.util.List;
 public class GallerySearchFragment extends Fragment {
 
   private ListViewModel viewModel;
-  private GalleryListAdapter galleryListAdapter = new GalleryListAdapter(getContext());
-
+  private GalleryListAdapter galleryListAdapter;
   private ProgressBar loadingView;
   private TextView listError;
   private RecyclerView galleryArray;
-  private List<Gallery> galleries;
+  private Gallery[] galleries;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.gallery_list, container, false);
-
-//    loadingView = view.findViewById(R.id.loading_view);
-//    listError = view.findViewById(R.id.list_error);
     galleryArray = view.findViewById(R.id.recycler_view);
-
     return view;
   }
 
@@ -52,11 +47,9 @@ public class GallerySearchFragment extends Fragment {
     viewModel.getSearchResult().observe(getViewLifecycleOwner(), searchResult -> {
       if (searchResult != null) {
         galleryArray.setVisibility(View.VISIBLE);
-        galleries = new ArrayList<Gallery>(Arrays.asList(searchResult.getData()));
-        galleryListAdapter.updateGalleryList(galleries);
+        galleryArray.setAdapter(new GalleryListAdapter(getContext(), searchResult.getData()));
       }
     });
-
     viewModel.getLoading().observe(getViewLifecycleOwner(), loading -> {
       loadingView.setVisibility(loading ? View.VISIBLE : View.GONE);
       if (loading) {
@@ -68,12 +61,5 @@ public class GallerySearchFragment extends Fragment {
     viewModel.getError().observe(getViewLifecycleOwner(), error -> {
       listError.setVisibility(error ? View.VISIBLE : View.GONE);
     });
-
-    viewModel.loadData();
-    if (galleryArray != null) {
-      galleryArray.setLayoutManager(new LinearLayoutManager(getContext()));
-      galleryArray.setAdapter(galleryListAdapter);
-    }
-
   }
 }

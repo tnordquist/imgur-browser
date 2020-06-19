@@ -20,16 +20,17 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
 
 //  private final Gallery.SearchResult searchResult = new SearchResult();
 
-  private final List<Gallery> galleries = new ArrayList<Gallery>();
+//  private final List<Gallery> galleries = new ArrayList<Gallery>();
+  private final Gallery[] galleries;
 
-  public void updateGalleryList(List<Gallery> galleries) {
-    galleries.clear();
-    galleries.addAll(galleries);
-    notifyDataSetChanged();
+  public void updateGalleryList(Context context) {
+
   }
 
-  public GalleryListAdapter(Context context) {
+  public GalleryListAdapter(Context context, Gallery[] galleries) {
+    super();
     this.context = context;
+    this.galleries = galleries;
   }
 
   @NonNull
@@ -46,7 +47,7 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
 
   @Override
   public int getItemCount() {
-    return galleries.size();
+    return galleries.length;
   }
 
   class GalleryViewHolder extends RecyclerView.ViewHolder {
@@ -59,13 +60,14 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
       super(itemView);
       title = itemView.findViewById(R.id.title);
       description = itemView.findViewById(R.id.description);
-      images = itemView.findViewById(R.id.images);
+     images = itemView.findViewById(R.id.image);
     }
 
     private void bind(int position) {
 
-      title.setText(galleries.get(position).getTitle());
-      images.setText(Arrays.toString(galleries.get(position).getImages()));
+      title.setText(galleries[position].getTitle());
+      description.setText(galleries[position].getDescription());
+     images.setText(Arrays.toString(galleries[position].getImages()));
 
     }
   }
