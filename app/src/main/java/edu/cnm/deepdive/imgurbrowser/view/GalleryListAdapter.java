@@ -20,7 +20,7 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
 
 //  private final Gallery.SearchResult searchResult = new SearchResult();
 
-//  private final List<Gallery> galleries = new ArrayList<Gallery>();
+  //  private final List<Gallery> galleries = new ArrayList<Gallery>();
   private final Gallery[] galleries;
 
   public void updateGalleryList(Context context) {
@@ -60,14 +60,14 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
       super(itemView);
       title = itemView.findViewById(R.id.title);
       description = itemView.findViewById(R.id.description);
-     images = itemView.findViewById(R.id.image);
+      images = itemView.findViewById(R.id.image);
     }
 
     private void bind(int position) {
 
       title.setText(galleries[position].getTitle());
       description.setText(galleries[position].getDescription());
-     images.setText(Arrays.toString(galleries[position].getImages()));
+      images.setText(Arrays.toString(galleries[position].getImages()));
 
     }
   }

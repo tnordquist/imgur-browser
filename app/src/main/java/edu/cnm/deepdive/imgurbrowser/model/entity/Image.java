@@ -10,6 +10,7 @@ public class Image {
   @SerializedName("id")
   private String imageId;
 
+  @Expose
   private String title;
 
   private String description;

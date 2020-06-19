@@ -8,6 +8,7 @@ public class Gallery {
 
     private String id;
 
+    @Expose
     private String title;
 
     @Expose
