@@ -30,7 +30,6 @@ public class GallerySearchFragment extends Fragment {
   private ProgressBar loadingView;
   private TextView listError;
   private RecyclerView galleryArray;
-
   private List<Gallery> galleries;
 
   @Override
@@ -38,8 +37,8 @@ public class GallerySearchFragment extends Fragment {
       Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.gallery_list, container, false);
 
-    loadingView = view.findViewById(R.id.loading_view);
-    listError = view.findViewById(R.id.list_error);
+//    loadingView = view.findViewById(R.id.loading_view);
+//    listError = view.findViewById(R.id.list_error);
     galleryArray = view.findViewById(R.id.recycler_view);
 
     return view;

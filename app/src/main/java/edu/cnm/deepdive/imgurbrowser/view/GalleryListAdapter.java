@@ -41,13 +41,7 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
 
   @Override
   public void onBindViewHolder(@NonNull GalleryViewHolder holder, int position) {
-
-    TextView title = holder.itemView.findViewById(R.id.title);
-    TextView description = holder.itemView.findViewById(R.id.description);
-    TextView images = holder.itemView.findViewById(R.id.images);
-
-    title.setText(galleries.get(position).getTitle());
-    images.setText(Arrays.toString(galleries.get(position).getImages()));
+    holder.bind(position);
   }
 
   @Override
@@ -57,11 +51,24 @@ public class GalleryListAdapter extends RecyclerView.Adapter<GalleryListAdapter.
 
   class GalleryViewHolder extends RecyclerView.ViewHolder {
 
+    private final TextView title;
+    TextView description;
+    TextView images;
+
     public GalleryViewHolder(@NonNull View itemView) {
       super(itemView);
+      title = itemView.findViewById(R.id.title);
+      description = itemView.findViewById(R.id.description);
+      images = itemView.findViewById(R.id.images);
+    }
+
+    private void bind(int position) {
+
+      title.setText(galleries.get(position).getTitle());
+      images.setText(Arrays.toString(galleries.get(position).getImages()));
+
     }
   }
-
 
 
 }
