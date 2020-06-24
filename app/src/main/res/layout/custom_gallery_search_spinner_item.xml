@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/modal_image_spinner"
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:padding="@dimen/half_margin">
-
 
   <TextView
     android:id="@+id/title"
@@ -17,19 +18,17 @@
   <TextView
     android:id="@+id/description"
     style="@style/Description"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="start"
+    android:layout_gravity="end"
     android:layout_margin="@dimen/half_margin"/>
 
-  <Spinner
-    android:id="@+id/gallery_search_spinner"
-    android:layout_width="match_parent"
+  <TextView
+    android:id="@+id/url"
+    style="@style/Description"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:spinnerMode="dialog"
-    android:layout_gravity="bottom"
-    android:layout_margin="@dimen/half_margin"
-    />
-
+    android:layout_gravity="end"
+    android:layout_margin="@dimen/half_margin"/>
 
 </LinearLayout>

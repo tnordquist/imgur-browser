@@ -7,17 +7,20 @@ import java.util.Date;
 
 public class Image {
 
+  @Expose
   @SerializedName("id")
   private String imageId;
 
   @Expose
   private String title;
 
+  @Expose
   private String description;
 
   @SerializedName("datetime")
   private Date imageDateTime;
 
+  @Expose
   @SerializedName("link")
   private String url;
 
@@ -119,5 +122,18 @@ public class Image {
 
   public void setBandwidth(long bandwidth) {
     this.bandwidth = bandwidth;
+  }
+
+  @Override
+  public String toString() {
+    String alt = "Holder Title";
+    String altDes = "Filler Description Items";
+    if (title == null) {
+      title = alt;
+    }
+    if (description == null) {
+      description = altDes;
+    }
+    return title + "" + description + "" + url;
   }
 }

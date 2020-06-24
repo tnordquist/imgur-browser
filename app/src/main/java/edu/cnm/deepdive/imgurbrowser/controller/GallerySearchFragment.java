@@ -1,10 +1,15 @@
 package edu.cnm.deepdive.imgurbrowser.controller;
 
 import android.os.Bundle;
+import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import edu.cnm.deepdive.imgurbrowser.R;
 import edu.cnm.deepdive.imgurbrowser.model.entity.Gallery;
 import edu.cnm.deepdive.imgurbrowser.model.entity.Gallery.SearchResult;
+import edu.cnm.deepdive.imgurbrowser.model.entity.Image;
 import edu.cnm.deepdive.imgurbrowser.view.GalleryListAdapter;
 import edu.cnm.deepdive.imgurbrowser.viewmodel.ListViewModel;
 import java.util.ArrayList;
@@ -29,13 +35,16 @@ public class GallerySearchFragment extends Fragment {
   private ProgressBar loadingView;
   private TextView listError;
   private RecyclerView galleryArray;
+  private ArrayAdapter<Image> imageArrayAdapter;
   private Gallery[] galleries;
+  private Image[] images;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.gallery_list, container, false);
     galleryArray = view.findViewById(R.id.recycler_view);
+
     return view;
   }
 
@@ -62,4 +71,5 @@ public class GallerySearchFragment extends Fragment {
       listError.setVisibility(error ? View.VISIBLE : View.GONE);
     });
   }
+
 }
