@@ -1,6 +1,5 @@
 package edu.cnm.deepdive.imgurbrowser.view;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +21,7 @@ public class GalleryListAdapter extends
 
   private final Context context;
   private final Gallery[] galleries;
+
 
   public GalleryListAdapter(Context context, Gallery[] galleries) {
     super();
@@ -85,11 +85,15 @@ public class GalleryListAdapter extends
     private void bind(int position) {
       title.setText(galleries[position].getTitle());
       description.setText(galleries[position].getDescription());
-      ArrayAdapter<Image> dataAdapter = new ArrayAdapter<>(context,
-          android.R.layout.simple_spinner_item, galleries[position].getImages());
-      dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-      imageSpinner.setAdapter(dataAdapter);
-//          R.layout.custom_gallery_search_spinner_item, galleries[position].getImages());
+
+//      ArrayAdapter<Image> dataAdapter = new ArrayAdapter<>(context,
+//          android.R.layout.simple_spinner_item, galleries[position].getImages());
+//      ArrayAdapter<Image> dataAdapter = new ArrayAdapter<Image>(context,
+//          android.R.layout.simple_spinner_item, galleries[position].getImages());
+//      dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//      imageSpinner.setAdapter(dataAdapter);
+         GalleryImageAdapter galleryImageAdapter = new GalleryImageAdapter(context,galleries[position].getImages());
+         imageSpinner.setAdapter(galleryImageAdapter);
     }
   }
 
