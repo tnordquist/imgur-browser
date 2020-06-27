@@ -6,14 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.squareup.picasso.Picasso;
 import edu.cnm.deepdive.imgurbrowser.R;
 import edu.cnm.deepdive.imgurbrowser.model.entity.Gallery;
-import edu.cnm.deepdive.imgurbrowser.model.entity.Image;
 
 public class GalleryListAdapter extends
     RecyclerView.Adapter<GalleryListAdapter.GalleryViewHolder> implements
@@ -21,7 +20,6 @@ public class GalleryListAdapter extends
 
   private final Context context;
   private final Gallery[] galleries;
-
 
   public GalleryListAdapter(Context context, Gallery[] galleries) {
     super();
@@ -53,9 +51,7 @@ public class GalleryListAdapter extends
 
   @Override
   public void onNothingSelected(AdapterView<?> adapterView) {
-
   }
-
 
   class GalleryViewHolder extends RecyclerView.ViewHolder {
 
@@ -71,7 +67,7 @@ public class GalleryListAdapter extends
       imageSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int index, long l) {
-          String item = adapterView.getItemAtPosition(index).toString();
+//          String item = adapterView.getItemAtPosition(index).toString();
         }
 
         @Override
@@ -85,15 +81,9 @@ public class GalleryListAdapter extends
     private void bind(int position) {
       title.setText(galleries[position].getTitle());
       description.setText(galleries[position].getDescription());
-
-//      ArrayAdapter<Image> dataAdapter = new ArrayAdapter<>(context,
-//          android.R.layout.simple_spinner_item, galleries[position].getImages());
-//      ArrayAdapter<Image> dataAdapter = new ArrayAdapter<Image>(context,
-//          android.R.layout.simple_spinner_item, galleries[position].getImages());
-//      dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//      imageSpinner.setAdapter(dataAdapter);
-         GalleryImageAdapter galleryImageAdapter = new GalleryImageAdapter(context,galleries[position].getImages());
-         imageSpinner.setAdapter(galleryImageAdapter);
+      GalleryImageAdapter galleryImageAdapter = new GalleryImageAdapter(context,
+          galleries[position].getImages());
+      imageSpinner.setAdapter(galleryImageAdapter);
     }
   }
 

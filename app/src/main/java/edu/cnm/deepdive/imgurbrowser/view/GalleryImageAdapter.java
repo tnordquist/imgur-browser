@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import com.squareup.picasso.Picasso;
 import edu.cnm.deepdive.imgurbrowser.R;
 import edu.cnm.deepdive.imgurbrowser.model.entity.Image;
 import java.util.List;
@@ -47,7 +48,7 @@ public class GalleryImageAdapter extends ArrayAdapter<Image> {
     Image currentItem = getItem(position);
 
     if (currentItem != null) {
-      imageView.setSelected(true);
+      Picasso.get().load(currentItem.getUrl()).into(imageView);
       titleView.setText(currentItem.getTitle());
       descriptionView.setText(currentItem.getDescription());
       urlView.setText(currentItem.getUrl());
