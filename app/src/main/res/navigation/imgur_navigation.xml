@@ -18,7 +18,7 @@
   </fragment>
   <fragment
     android:id="@+id/detailFragment"
-    android:name="edu.cnm.deepdive.imgurbrowser.controller.SearchDetailFragment"
+    android:name="edu.cnm.deepdive.imgurbrowser.controller.DetailFragment"
     android:label="fragment_detail"
     tools:layout="@layout/fragment_detail">
     <action

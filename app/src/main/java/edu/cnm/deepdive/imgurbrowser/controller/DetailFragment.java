@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import edu.cnm.deepdive.imgurbrowser.R;
 
-public class SearchDetailFragment extends Fragment {
+public class DetailFragment extends Fragment {
 
 
   public View onCreateView(@NonNull LayoutInflater inflater,

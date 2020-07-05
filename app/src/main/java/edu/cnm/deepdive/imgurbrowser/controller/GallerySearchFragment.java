@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,9 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import edu.cnm.deepdive.imgurbrowser.R;
 import edu.cnm.deepdive.imgurbrowser.model.entity.Gallery;
 import edu.cnm.deepdive.imgurbrowser.view.GalleryListAdapter;
+import edu.cnm.deepdive.imgurbrowser.view.GalleryListAdapter.OnItemSelectedHelper;
 import edu.cnm.deepdive.imgurbrowser.viewmodel.ListViewModel;
 
-public class GallerySearchFragment extends Fragment {
+public class GallerySearchFragment extends Fragment implements
+    GalleryListAdapter.OnItemSelectedHelper {
 
   private ListViewModel viewModel;
   private GalleryListAdapter galleryListAdapter;
@@ -32,7 +35,6 @@ public class GallerySearchFragment extends Fragment {
       Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.gallery_list, container, false);
     galleryArray = view.findViewById(R.id.recycler_view);
-
     return view;
   }
 
@@ -44,7 +46,11 @@ public class GallerySearchFragment extends Fragment {
     viewModel.getSearchResult().observe(getViewLifecycleOwner(), searchResult -> {
       if (searchResult != null) {
         galleryArray.setVisibility(View.VISIBLE);
-        galleryArray.setAdapter(new GalleryListAdapter(getContext(), searchResult.getData()));
+        galleryArray.setAdapter(new GalleryListAdapter(getContext(), searchResult.getData(),
+            index -> {
+              onSelected(index);
+            }));
+
       }
     });
     viewModel.getLoading().observe(getViewLifecycleOwner(), loading -> {
@@ -58,6 +64,18 @@ public class GallerySearchFragment extends Fragment {
     viewModel.getError().observe(getViewLifecycleOwner(), error -> {
       listError.setVisibility(error ? View.VISIBLE : View.GONE);
     });
+
+
   }
 
+  @Override
+  public void onSelected(int index) {
+
+    imageDialogDetail();
+  }
+
+  private void imageDialogDetail() {
+    ImageDetailDialogFragment fragment = ImageDetailDialogFragment.newInstance();
+    fragment.show(getChildFragmentManager(), fragment.getClass().getName());
+  }
 }

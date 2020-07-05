@@ -9,9 +9,10 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.squareup.picasso.Picasso;
 import edu.cnm.deepdive.imgurbrowser.R;
+import edu.cnm.deepdive.imgurbrowser.controller.GallerySearchFragment;
 import edu.cnm.deepdive.imgurbrowser.model.entity.Gallery;
 
 public class GalleryListAdapter extends
@@ -20,11 +21,15 @@ public class GalleryListAdapter extends
 
   private final Context context;
   private final Gallery[] galleries;
+  private final OnItemSelectedHelper onItemSelectedHelper;
+  GallerySearchFragment gallerySearchFragment;
 
-  public GalleryListAdapter(Context context, Gallery[] galleries) {
+  public GalleryListAdapter(Context context, Gallery[] galleries,
+      OnItemSelectedHelper onItemSelectedHelper) {
     super();
     this.context = context;
     this.galleries = galleries;
+    this.onItemSelectedHelper = onItemSelectedHelper;
   }
 
   @NonNull
@@ -46,7 +51,8 @@ public class GalleryListAdapter extends
 
   @Override
   public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
-    String item = adapterView.getItemAtPosition(pos).toString();
+
+    onItemSelectedHelper.onSelected(pos);
   }
 
   @Override
@@ -64,18 +70,6 @@ public class GalleryListAdapter extends
       title = itemView.findViewById(R.id.title);
       description = itemView.findViewById(R.id.description);
       imageSpinner = itemView.findViewById(R.id.gallery_search_spinner);
-      imageSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int index, long l) {
-//          String item = adapterView.getItemAtPosition(index).toString();
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
-        }
-
-      });
     }
 
     private void bind(int position) {
@@ -84,7 +78,13 @@ public class GalleryListAdapter extends
       GalleryImageAdapter galleryImageAdapter = new GalleryImageAdapter(context,
           galleries[position].getImages());
       imageSpinner.setAdapter(galleryImageAdapter);
+
+
     }
+  }
+
+  public interface OnItemSelectedHelper {
+    void onSelected(int pos);
   }
 
 

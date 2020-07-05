@@ -126,7 +126,7 @@ public class Image {
 
   @Override
   public String toString() {
-    String alt = "Holder Title";
+    String alt = "Title";
     String altDes = "Filler Description Items";
     if (title == null) {
       title = alt;
