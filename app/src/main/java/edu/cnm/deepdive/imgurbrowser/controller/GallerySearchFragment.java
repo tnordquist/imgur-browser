@@ -47,9 +47,7 @@ public class GallerySearchFragment extends Fragment implements
       if (searchResult != null) {
         galleryArray.setVisibility(View.VISIBLE);
         galleryArray.setAdapter(new GalleryListAdapter(getContext(), searchResult.getData(),
-            index -> {
-              onSelected(index);
-            }));
+            this::onSelected));
 
       }
     });
@@ -69,12 +67,11 @@ public class GallerySearchFragment extends Fragment implements
   }
 
   @Override
-  public void onSelected(int index) {
-
-    imageDialogDetail();
+  public void onSelected(int index, Gallery gallery) {
+    imageDialogDetail(gallery);
   }
 
-  private void imageDialogDetail() {
+  private void imageDialogDetail(Gallery gallery) {
     ImageDetailDialogFragment fragment = ImageDetailDialogFragment.newInstance();
     fragment.show(getChildFragmentManager(), fragment.getClass().getName());
   }
